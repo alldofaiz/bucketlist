@@ -46,11 +46,8 @@ def bucket_done():
 # delete
 @app.route("/bucket/delete", methods=["POST"])
 def bucket_delete():
-    num_receive = request.form['num_give']
-    db.bucket.update_one(
-        {'num': int(num_receive)},
-        {'$set': {'done': 1}}
-    )
+    num_delete = request.form["num_delete"]
+    db.bucket.delete_one({'num': int(num_delete)})
     return jsonify({'msg': 'Delete done!'})
 
 
